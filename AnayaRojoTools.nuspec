@@ -9,12 +9,28 @@
     <projectUrl>https://github.com/anayarojo/anayarojo-tools</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/anayarojo/anayarojo-tools/master/AnayaRojo.Tools/icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Toolds for c# development</description>
-    <releaseNotes>Configuration, Log and extensions</releaseNotes>
+    <description>Tools for c# development</description>
+    <releaseNotes>Configuration, Log and code extensions</releaseNotes>
     <copyright>Copyright Anaya Rojo 2018</copyright>
     <tags>Log configuration anayarojo extensions c#</tags>
     <dependencies>
       <!--<dependency id="SampleDependency" version="1.0" />-->
     </dependencies>
   </metadata>
+    <files>
+	<!--DLL AND DOC-->
+	<file src="AnayaRojo.Tools\bin\Release-net45\AnayaRojo.Tools.dll" target="lib\net45\AnayaRojo.Tools.dll" />
+	<file src="AnayaRojo.Tools\bin\Release-net45\AnayaRojo.Tools.xml" target="lib\net45\AnayaRojo.Tools.xml" />
+	<file src="AnayaRojo.Tools\bin\Release-net451\AnayaRojo.Tools.dll" target="lib\net451\AnayaRojo.Tools.dll" />
+	<file src="AnayaRojo.Tools\bin\Release-net451\AnayaRojo.Tools.xml" target="lib\net451\AnayaRojo.Tools.xml" />
+	<file src="AnayaRojo.Tools\bin\Release-net452\AnayaRojo.Tools.dll" target="lib\net452\AnayaRojo.Tools.dll" />
+	<file src="AnayaRojo.Tools\bin\Release-net452\AnayaRojo.Tools.xml" target="lib\net452\AnayaRojo.Tools.xml" />
+	<file src="AnayaRojo.Tools\bin\Release-net46\AnayaRojo.Tools.dll" target="lib\net46\AnayaRojo.Tools.dll" />
+	<file src="AnayaRojo.Tools\bin\Release-net46\AnayaRojo.Tools.xml" target="lib\net46\AnayaRojo.Tools.xml" />
+	<file src="AnayaRojo.Tools\bin\Release-net461\AnayaRojo.Tools.dll" target="lib\net461\AnayaRojo.Tools.dll" />
+	<file src="AnayaRojo.Tools\bin\Release-net461\AnayaRojo.Tools.xml" target="lib\net461\AnayaRojo.Tools.xml" />
+	<!-- SAMPLE CONFIG -->
+	<file src="AnayaRojo.Tools\bin\Release\app.config.transform" target="content\app.config.transform" />
+	<file src="AnayaRojo.Tools\bin\Release\web.config.transform" target="content\web.config.transform" />
+  </files>
 </package>

@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="Configuration\ArConfig.cs" />
     <Compile Include="Extensions\DataBase\DataBaseExtension.cs" />
+    <Compile Include="Extensions\DataBase\SqlDataReaderExtension.cs" />
     <Compile Include="Extensions\Date\DateTimeExtension.cs" />
     <Compile Include="Extensions\Enums\EnumExtension.cs" />
     <Compile Include="Extensions\Object\ObjectExtension.cs" />
