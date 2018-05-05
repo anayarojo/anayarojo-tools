@@ -25,19 +25,19 @@ Install-Package AnayaRojoTools -Version 1.0.1
 
 ```csharp
 using System;
-using QualisysLog;
+using AnayaRojo.Tools.Log;
 
 public class Program
 {
 	public static void Main()
 	{
-            QsLog.WriteInfo("Para escribir información");
-            QsLog.WriteSuccess("Para escribir proceso exitoso");
-            QsLog.WriteTracking("Para escribir seguimiento de proceso");
-            QsLog.WriteProcess("Para escribir proceso");
-            QsLog.WriteWarning("Para escribir advertencia");
-            QsLog.WriteError("Para escribir error");
-            QsLog.WriteException("Para escribir excepción");
+            ArLog.WriteInfo("Para escribir información");
+            ArLog.WriteSuccess("Para escribir proceso exitoso");
+            ArLog.WriteTracking("Para escribir seguimiento de proceso");
+            ArLog.WriteProcess("Para escribir proceso");
+            ArLog.WriteWarning("Para escribir advertencia");
+            ArLog.WriteError("Para escribir error");
+            ArLog.WriteException("Para escribir excepción");
 	}
 }
 ```
@@ -69,22 +69,22 @@ public class Program
 
 ```csharp
 using System;
-using QualisysConfig;
+using AnayaRojo.Tools.Config;
 
 public class Program
 {
 	public static void Main()
 	{
-            string lStrValue = QsConfig.GetValue<string>("string");
-            char lChrValue = QsConfig.GetValue<char>("char");
-            int lIntValue = QsConfig.GetValue<int>("int");
-            long lLonValue = QsConfig.GetValue<long>("long");
-            float lFltValue = QsConfig.GetValue<float>("float");
-            double lFltValue = QsConfig.GetValue<double>("double");
-            decimal lDmlValue = QsConfig.GetValue<decimal>("decimal");
-            DateTime lDtmValue = QsConfig.GetValue<DateTime>("date");
-            bool lBolValue = QsConfig.GetValue<bool>("bool");
-            SampleEnum lEnmValue = QsConfig.GetValue<SampleEnum>("enum");
+            string lStrValue = ArConfig.GetValue<string>("string");
+            char lChrValue = ArConfig.GetValue<char>("char");
+            int lIntValue = ArConfig.GetValue<int>("int");
+            long lLonValue = ArConfig.GetValue<long>("long");
+            float lFltValue = ArConfig.GetValue<float>("float");
+            double lFltValue = ArConfig.GetValue<double>("double");
+            decimal lDmlValue = ArConfig.GetValue<decimal>("decimal");
+            DateTime lDtmValue = ArConfig.GetValue<DateTime>("date");
+            bool lBolValue = ArConfig.GetValue<bool>("bool");
+            SampleEnum lEnmValue = ArConfig.GetValue<SampleEnum>("enum");
 	}
 }
 
