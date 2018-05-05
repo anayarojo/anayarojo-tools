@@ -3,7 +3,7 @@
 #### Nuget installation:
 
 ```
-Install-Package AnayaRojoTools -Version 1.0.1
+Install-Package AnayaRojoTools -Version 1.0.0
 ```
 
 #### Log configuration:
