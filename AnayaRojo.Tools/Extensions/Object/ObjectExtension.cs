@@ -210,5 +210,31 @@ namespace AnayaRojo.Tools.Extensions.Object
                 return (T)lObjFormatter.Deserialize(lObjStream);
             }
         }
+
+        /// <summary>
+        ///     Método para obtener un valor en un tipo de dato específico.
+        /// </summary>
+        /// <param name="pObjValue">
+        ///     Valor para convertir.
+        /// </param>
+        /// <returns>
+        ///     Valor en el tipo de dato especificado.
+        /// </returns>
+        public static T GetValue<T>(this object pObjValue) where T : IConvertible
+        {
+            T lUknResultValue = default(T);
+            var lUnkTempValue = pObjValue.ToString();
+
+            if (typeof(T).IsEnum)
+            {
+                lUknResultValue = (T)Enum.Parse(typeof(T), lUnkTempValue, true);
+            }
+            else
+            {
+                lUknResultValue = (T)Convert.ChangeType(lUnkTempValue, typeof(T));
+            }
+
+            return lUknResultValue;
+        }
     }
 }

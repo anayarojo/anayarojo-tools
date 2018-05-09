@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ArConfig.cs" />
+    <Compile Include="Configuration\Config.cs" />
     <Compile Include="Extensions\DataBase\DataBaseExtension.cs" />
     <Compile Include="Extensions\DataBase\SqlDataReaderExtension.cs" />
     <Compile Include="Extensions\Date\DateTimeExtension.cs" />
@@ -116,7 +117,27 @@
     <Compile Include="Extensions\Security\Crc32Extension.cs" />
     <Compile Include="Extensions\Security\EncryptionExtension.cs" />
     <Compile Include="Extensions\String\StringInjectExtension.cs" />
-    <Compile Include="Log\ArLog.cs" />
+    <Compile Include="Logs\ArLog.cs" />
+    <Compile Include="Logs\DataBaseLog.cs" />
+    <Compile Include="Logs\Enums\LogTypeEnum.cs" />
+    <Compile Include="Logs\EventLog.cs" />
+    <Compile Include="Logs\FileLog.cs" />
+    <Compile Include="Logs\Implementation\ConsoleLog.cs" />
+    <Compile Include="Logs\Implementation\DataBaseLog.cs" />
+    <Compile Include="Logs\Implementation\EventLog.cs" />
+    <Compile Include="Logs\Implementation\FileLog.cs" />
+    <Compile Include="Logs\Implementation\MailLog.cs" />
+    <Compile Include="Logs\Interface\IBaseLog.cs" />
+    <Compile Include="Logs\Log.cs" />
+    <Compile Include="Logs\MailLog.cs" />
+    <Compile Include="Logs\Models\ConsoleLogModel.cs" />
+    <Compile Include="Logs\Models\DataBaseLogModel.cs" />
+    <Compile Include="Logs\Models\EventLogModel.cs" />
+    <Compile Include="Logs\Models\FileLogModel.cs" />
+    <Compile Include="Logs\Models\LogConfigurationModel.cs" />
+    <Compile Include="Logs\Models\LogVisibilityModel.cs" />
+    <Compile Include="Logs\Models\MailLogModel.cs" />
+    <Compile Include="Logs\Sections\LogSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +146,7 @@
   <ItemGroup>
     <Content Include="icon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
