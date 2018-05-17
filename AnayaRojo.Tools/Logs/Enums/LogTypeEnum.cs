@@ -4,19 +4,19 @@ namespace AnayaRojo.Tools.Logs.Enums
 {
     public enum LogTypeEnum : int
     {
-        [DescriptionAttribute("Información")]
+        [DescriptionAttribute("INFO")]
         INFO = 0,
-        [DescriptionAttribute("Exitoso")]
+        [DescriptionAttribute("SUCCESS")]
         SUCCESS = 1,
-        [DescriptionAttribute("Seguimiento")]
+        [DescriptionAttribute("TRACKING")]
         TRACKING = 2,
-        [DescriptionAttribute("Operación")]
+        [DescriptionAttribute("PROCESS")]
         PROCESS = 3,
-        [DescriptionAttribute("Advertencia")]
+        [DescriptionAttribute("WARNING")]
         WARNING = 4,
-        [DescriptionAttribute("Error")]
+        [DescriptionAttribute("ERROR")]
         ERROR = 5,
-        [DescriptionAttribute("Excepción")]
+        [DescriptionAttribute("EXCEPTION")]
         EXCEPTION = 6,
     }
 }

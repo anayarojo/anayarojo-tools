@@ -9,6 +9,7 @@ namespace AnayaRojo.Tools.Logs.Models
     public class LogVisibilityModel
     {
         public string Format { get; set; }
+        public string DateFormat { get; set; }
         public bool ShowInfo { get; set; }
         public bool ShowSuccess { get; set; }
         public bool ShowTracking { get; set; }

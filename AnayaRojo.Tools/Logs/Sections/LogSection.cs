@@ -1,11 +1,6 @@
-﻿using AnayaRojo.Tools.Logs.Models;
-using AnayaRojo.Tools.Extensions.Object;
-using System;
-using System.Collections.Generic;
+﻿using AnayaRojo.Tools.Extensions.Object;
+using AnayaRojo.Tools.Logs.Models;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 
@@ -40,6 +35,7 @@ namespace AnayaRojo.Tools.Logs.Sections
             return new LogVisibilityModel()
             {
                 Format = lObjNode.Attributes["format"].Value.GetValue<string>(),
+                DateFormat = lObjNode.Attributes["dateFormat"].Value.GetValue<string>(),
                 ShowInfo = lObjNode.Attributes["showInfo"].Value.GetValue<bool>(),
                 ShowSuccess = lObjNode.Attributes["showSuccess"].Value.GetValue<bool>(),
                 ShowTracking = lObjNode.Attributes["showTracking"].Value.GetValue<bool>(),
@@ -105,7 +101,14 @@ namespace AnayaRojo.Tools.Logs.Sections
             return new EventLogModel()
             {
                 Active = lObjNode.Attributes["active"].Value.GetValue<bool>(),
-                Name = lObjNode.Attributes["name"].Value.GetValue<string>()
+                Name = lObjNode.Attributes["name"].Value.GetValue<string>(),
+                InfoId = lObjNode.Attributes["infoId"].Value.GetValue<int>(),
+                SuccessId = lObjNode.Attributes["successId"].Value.GetValue<int>(),
+                TrackingId = lObjNode.Attributes["trackingId"].Value.GetValue<int>(),
+                ProcessId = lObjNode.Attributes["processId"].Value.GetValue<int>(),
+                WarningId = lObjNode.Attributes["warningId"].Value.GetValue<int>(),
+                ErrorId = lObjNode.Attributes["errorId"].Value.GetValue<int>(),
+                ExceptionId = lObjNode.Attributes["exceptionId"].Value.GetValue<int>()
             };
         }
 

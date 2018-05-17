@@ -1,33 +1,67 @@
-﻿using AnayaRojo.Tools.Logs.Interface;
+﻿using AnayaRojo.Tools.Logs.Enums;
+using AnayaRojo.Tools.Logs.Interface;
 using System;
 
 namespace AnayaRojo.Tools.Logs.Implementation
 {
-    public class ConsoleLog : IBaseLog
+    public class ConsoleLog : BaseLog, IBaseLog
     {
         public void WriteLog(string pStrMessage)
         {
-            throw new NotImplementedException();
+            ConsoleWriteLine(pStrMessage, ConsoleColor.Gray);
         }
 
-        public void WriteLog(Enums.LogTypeEnum pEnmType, string pStrMessage)
+        public void WriteLog(LogTypeEnum pEnmType, string pStrMessage)
         {
-            throw new NotImplementedException();
+            ConsoleWriteLine(pStrMessage, GetConsoleColor(pEnmType));
         }
 
-        public void WriteLog(Enums.LogTypeEnum pEnmType, bool pBolIsSubLog, string pStrSubLogName, string pStrMessage)
+        public void WriteLog(LogTypeEnum pEnmType, bool pBolIsSubLog, string pStrSubLogName, string pStrMessage)
         {
-            throw new NotImplementedException();
+            ConsoleWriteLine(pBolIsSubLog ? string.Format("{0} ─ {1}", pStrMessage) : pStrMessage, GetConsoleColor(pEnmType));
         }
 
-        public void WriteLog(Enums.LogTypeEnum pEnmType, string pStrFormat, params object[] pArrObjArgs)
+        public void WriteLog(LogTypeEnum pEnmType, string pStrFormat, params object[] pArrObjArgs)
         {
-            throw new NotImplementedException();
+            ConsoleWriteLine(string.Format(pStrFormat, pArrObjArgs), GetConsoleColor(pEnmType));
         }
 
-        public void WriteLog(Enums.LogTypeEnum pEnmType, bool pBolIsSubLog, string pStrSubLogName, string pStrFormat, params object[] pArrObjArgs)
+        public void WriteLog(LogTypeEnum pEnmType, bool pBolIsSubLog, string pStrSubLogName, string pStrFormat, params object[] pArrObjArgs)
         {
-            throw new NotImplementedException();
+            ConsoleWriteLine(pBolIsSubLog ? string.Format("{0} ─ {1}", string.Format(pStrFormat, pArrObjArgs)) : string.Format(pStrFormat, pArrObjArgs), GetConsoleColor(pEnmType));
+        }
+
+        private ConsoleColor GetConsoleColor(LogTypeEnum pEnmType)
+        {
+            switch (pEnmType)
+            {
+                case LogTypeEnum.SUCCESS:
+                    return ConsoleColor.Green;
+                case LogTypeEnum.WARNING:
+                    return ConsoleColor.DarkYellow;
+                case LogTypeEnum.ERROR:
+                    return ConsoleColor.Red;
+                case LogTypeEnum.EXCEPTION:
+                    return ConsoleColor.Red;
+                case LogTypeEnum.TRACKING:
+                    return ConsoleColor.Gray;
+                case LogTypeEnum.PROCESS:
+                    return ConsoleColor.Yellow;
+                case LogTypeEnum.INFO:
+                    return ConsoleColor.Gray;
+                default:
+                    return ConsoleColor.Gray;
+            }
+        }
+
+        private void ConsoleWriteLine(string pStrMessage, ConsoleColor pEnmColor)
+        {
+            if (Configuration.ConsoleLog.Active)
+            {
+                Console.ForegroundColor = pEnmColor;
+                Console.WriteLine(pStrMessage);
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
         }
     }
 }

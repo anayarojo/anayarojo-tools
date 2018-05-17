@@ -122,6 +122,7 @@
     <Compile Include="Logs\Enums\LogTypeEnum.cs" />
     <Compile Include="Logs\EventLog.cs" />
     <Compile Include="Logs\FileLog.cs" />
+    <Compile Include="Logs\Implementation\BaseLog.cs" />
     <Compile Include="Logs\Implementation\ConsoleLog.cs" />
     <Compile Include="Logs\Implementation\DataBaseLog.cs" />
     <Compile Include="Logs\Implementation\EventLog.cs" />
@@ -141,7 +142,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
