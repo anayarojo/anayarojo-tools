@@ -98,6 +98,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -106,8 +107,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ArConfig.cs" />
-    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configs\Config.cs" />
+    <Compile Include="Configs\Models\ConsoleLogModel.cs" />
+    <Compile Include="Configs\Models\DataBaseLogModel.cs" />
+    <Compile Include="Configs\Models\EventLogModel.cs" />
+    <Compile Include="Configs\Models\LogModel.cs" />
+    <Compile Include="Configs\Models\LogsConfigurationModel.cs" />
+    <Compile Include="Configs\Models\MailLogModel.cs" />
+    <Compile Include="Configs\Models\VisibilityModel.cs" />
+    <Compile Include="Configs\Sections\LogsSection.cs" />
     <Compile Include="Extensions\DataBase\DataBaseExtension.cs" />
     <Compile Include="Extensions\DataBase\SqlDataReaderExtension.cs" />
     <Compile Include="Extensions\Date\DateTimeExtension.cs" />
@@ -117,37 +125,25 @@
     <Compile Include="Extensions\Security\Crc32Extension.cs" />
     <Compile Include="Extensions\Security\EncryptionExtension.cs" />
     <Compile Include="Extensions\String\StringInjectExtension.cs" />
-    <Compile Include="Logs\ArLog.cs" />
+    <Compile Include="Logs\ConsoleLog.cs" />
     <Compile Include="Logs\DataBaseLog.cs" />
     <Compile Include="Logs\Enums\LogTypeEnum.cs" />
     <Compile Include="Logs\EventLog.cs" />
-    <Compile Include="Logs\FileLog.cs" />
-    <Compile Include="Logs\Implementation\BaseLog.cs" />
-    <Compile Include="Logs\Implementation\ConsoleLog.cs" />
-    <Compile Include="Logs\Implementation\DataBaseLog.cs" />
-    <Compile Include="Logs\Implementation\EventLog.cs" />
-    <Compile Include="Logs\Implementation\FileLog.cs" />
-    <Compile Include="Logs\Implementation\MailLog.cs" />
-    <Compile Include="Logs\Interface\IBaseLog.cs" />
     <Compile Include="Logs\Log.cs" />
     <Compile Include="Logs\MailLog.cs" />
-    <Compile Include="Logs\Models\ConsoleLogModel.cs" />
-    <Compile Include="Logs\Models\DataBaseLogModel.cs" />
-    <Compile Include="Logs\Models\EventLogModel.cs" />
-    <Compile Include="Logs\Models\FileLogModel.cs" />
-    <Compile Include="Logs\Models\LogConfigurationModel.cs" />
-    <Compile Include="Logs\Models\LogVisibilityModel.cs" />
-    <Compile Include="Logs\Models\MailLogModel.cs" />
-    <Compile Include="Logs\Sections\LogSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="app.config.transform" />
+    <None Include="web.config.transform" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Content Include="icon.png" />
+    <Content Include="Logs\Resources\MailTemplate.html" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

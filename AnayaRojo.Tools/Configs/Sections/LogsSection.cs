@@ -1,41 +1,62 @@
-﻿using AnayaRojo.Tools.Extensions.Object;
-using AnayaRojo.Tools.Logs.Models;
+﻿using AnayaRojo.Tools.Configs.Models;
+using AnayaRojo.Tools.Extensions.Object;
 using System.Configuration;
 using System.Xml;
 
-
-namespace AnayaRojo.Tools.Logs.Sections
+namespace AnayaRojo.Tools.Configs.Sections
 {
-    public class LogSection : IConfigurationSectionHandler
+    /// <summary>
+    ///     Sección de la configuración de los logs.
+    /// </summary>
+    /// <remarks>
+    ///     Raul Anaya, 27/05/2018
+    /// </remarks>
+    public class LogsSection : IConfigurationSectionHandler
     {
+        /// <summary>
+        ///     Crear modelo de la configuración de los logs.
+        /// </summary>
+        /// <param name="pObjParent">
+        ///     Padre
+        /// </param>
+        /// <param name="pObjConfigContext">
+        ///     Contexto
+        /// </param>
+        /// <param name="pObjSection">
+        ///     Sección
+        /// </param>
+        /// <returns>
+        ///     Modelo de la configuración de los logs.
+        /// </returns>
         public object Create(object pObjParent, object pObjConfigContext, XmlNode pObjSection)
         {
-            LogConfigurationModel lObjLogConfiguration = new LogConfigurationModel();
+            LogsConfigurationModel lObjLogConfiguration = new LogsConfigurationModel();
 
-            lObjLogConfiguration.Visibility = pObjSection.SelectSingleNode("visibility") != null ? 
+            lObjLogConfiguration.Visibility = pObjSection.SelectSingleNode("visibility") != null ?
                 GetVisibility(pObjSection.SelectSingleNode("visibility")) : GetDefaultVisibility();
 
-            lObjLogConfiguration.ConsoleLog = pObjSection.SelectSingleNode("consoleLog") != null ? 
-                GetConsoleLog(pObjSection.SelectSingleNode("consoleLog")) : GetDefaultConsoleLog();
+            lObjLogConfiguration.Log = pObjSection.SelectSingleNode("log") != null ?
+                GetLog(pObjSection.SelectSingleNode("log")) : GetDefaultFileLog();
 
-            lObjLogConfiguration.DataBaseLog = pObjSection.SelectSingleNode("dataBaseLog") != null ?
-                GetDataBaseLog(pObjSection.SelectSingleNode("dataBaseLog")) : GetDefaultDataBaseLog();
+            lObjLogConfiguration.ConsoleLog = pObjSection.SelectSingleNode("consoleLog") != null ?
+                GetConsoleLog(pObjSection.SelectSingleNode("consoleLog")) : GetDefaultConsoleLog();
 
             lObjLogConfiguration.EventLog = pObjSection.SelectSingleNode("eventLog") != null ?
                 GetEventLog(pObjSection.SelectSingleNode("eventLog")) : GetDefaultEventLog();
 
-            lObjLogConfiguration.FileLog = pObjSection.SelectSingleNode("fileLog") != null ?
-                GetFileLog(pObjSection.SelectSingleNode("fileLog")) : GetDefaultFileLog();
+            lObjLogConfiguration.DataBaseLog = pObjSection.SelectSingleNode("dataBaseLog") != null ?
+                GetDataBaseLog(pObjSection.SelectSingleNode("dataBaseLog")) : GetDefaultDataBaseLog();
 
+            lObjLogConfiguration.MailLog = pObjSection.SelectSingleNode("mailLog") != null ?
+                GetMailLog(pObjSection.SelectSingleNode("mailLog")) : GetDefaultMailLog();
+            
             return lObjLogConfiguration;
         }
 
-        private LogVisibilityModel GetVisibility(XmlNode lObjNode)
+        private VisibilityModel GetVisibility(XmlNode lObjNode)
         {
-            return new LogVisibilityModel()
+            return new VisibilityModel()
             {
-                Format = lObjNode.Attributes["format"].Value.GetValue<string>(),
-                DateFormat = lObjNode.Attributes["dateFormat"].Value.GetValue<string>(),
                 ShowInfo = lObjNode.Attributes["showInfo"].Value.GetValue<bool>(),
                 ShowSuccess = lObjNode.Attributes["showSuccess"].Value.GetValue<bool>(),
                 ShowTracking = lObjNode.Attributes["showTracking"].Value.GetValue<bool>(),
@@ -46,17 +67,40 @@ namespace AnayaRojo.Tools.Logs.Sections
             };
         }
 
-        private LogVisibilityModel GetDefaultVisibility()
+        private VisibilityModel GetDefaultVisibility()
         {
-            return new LogVisibilityModel()
+            return new VisibilityModel()
             {
-                Format = "",
                 ShowInfo = false,
                 ShowTracking = false,
                 ShowProcess = false,
                 ShowWarning = false,
                 ShowError = true,
                 ShowException = true
+            };
+        }
+
+        private LogModel GetLog(XmlNode lObjNode)
+        {
+            return new LogModel()
+            {
+                Active = lObjNode.Attributes["active"].Value.GetValue<bool>(),
+                WebLog = lObjNode.Attributes["webLog"].Value.GetValue<bool>(),
+                FullLog = lObjNode.Attributes["fullLog"].Value.GetValue<bool>(),
+                MultiFiles = lObjNode.Attributes["multiFiles"].Value.GetValue<bool>(),
+                Format = lObjNode.Attributes["format"].Value.GetValue<string>(),
+                DateFormat = lObjNode.Attributes["dateFormat"].Value.GetValue<string>(),
+                FileName = lObjNode.Attributes["fileName"].Value.GetValue<string>(),
+                RelativePath = lObjNode.Attributes["relativePath"].Value.GetValue<bool>(),
+                Path = lObjNode.Attributes["path"].Value.GetValue<string>()
+            };
+        }
+
+        private LogModel GetDefaultFileLog()
+        {
+            return new LogModel()
+            {
+                Active = false,
             };
         }
 
@@ -83,6 +127,7 @@ namespace AnayaRojo.Tools.Logs.Sections
                 Active = lObjNode.Attributes["active"].Value.GetValue<bool>(),
                 ConnectionString = lObjNode.Attributes["connectionString"].Value.GetValue<string>(),
                 Table = lObjNode.Attributes["table"].Value.GetValue<string>(),
+                DateField = lObjNode.Attributes["dateField"].Value.GetValue<string>(),
                 TypeField = lObjNode.Attributes["typeField"].Value.GetValue<string>(),
                 MessageField = lObjNode.Attributes["messageField"].Value.GetValue<string>()
             };
@@ -119,25 +164,7 @@ namespace AnayaRojo.Tools.Logs.Sections
                 Active = false
             };
         }
-
-        private FileLogModel GetFileLog(XmlNode lObjNode)
-        {
-            return new FileLogModel()
-            {
-                Active = lObjNode.Attributes["active"].Value.GetValue<bool>(),
-                Name = lObjNode.Attributes["name"].Value.GetValue<string>(),
-                Path = lObjNode.Attributes["path"].Value.GetValue<string>()
-            };
-        }
-
-        private FileLogModel GetDefaultFileLog()
-        {
-            return new FileLogModel()
-            {
-                Active = false
-            };
-        }
-
+        
         private MailLogModel GetMailLog(XmlNode lObjNode)
         {
             return new MailLogModel()

@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Linq;
 
-namespace AnayaRojo.Tools.Configuration
+namespace AnayaRojo.Tools.Configs
 {
     /// <summary>
     ///     Librería para acceder a la configuración de las aplicaciones en .Net
@@ -10,7 +10,7 @@ namespace AnayaRojo.Tools.Configuration
     /// <remarks>
     ///     Raul Anaya, 13/12/2017
     /// </remarks>
-    public static class ArConfig
+    public static class Config
     {
         /// <summary>
         ///     Método para obtener el valor de una configuración en un tipo de dato específico
