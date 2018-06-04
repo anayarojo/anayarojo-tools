@@ -15,7 +15,7 @@ namespace AnayaRojo.Tools.Extensions.DataBase
         ///     Método para obtener comandos sql.
         /// </summary>
         /// <param name="pObjCurrentObject">
-        ///     Clase u objeto que controla del acceso a datos.
+        ///     Clase u objeto que controla el acceso a datos.
         /// </param>
         /// <param name="pStrNamespace">
         ///     Nombre de espacio del comando sql.

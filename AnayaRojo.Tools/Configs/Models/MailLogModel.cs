@@ -23,6 +23,10 @@ namespace AnayaRojo.Tools.Configs.Models
         /// </summary>
         public string Server { get; set; }
         /// <summary>
+        ///     Puerto del servidor de correo electrónico.
+        /// </summary>
+        public int Port { get; set; }
+        /// <summary>
         ///     Usuario del servidor de correo electrónico.
         /// </summary>
         public string User { get; set; }

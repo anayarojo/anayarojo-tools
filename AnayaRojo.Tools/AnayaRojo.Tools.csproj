@@ -143,7 +143,14 @@
   <ItemGroup>
     <Content Include="icon.ico" />
     <Content Include="icon.png" />
-    <Content Include="Logs\Resources\MailTemplate.html" />
+    <EmbeddedResource Include="Logs\Resources\Images\Excepction.jpg" />
+    <EmbeddedResource Include="Logs\Resources\Images\Information.jpg" />
+    <EmbeddedResource Include="Logs\Resources\Images\Process.jpg" />
+    <EmbeddedResource Include="Logs\Resources\Images\Success.jpg" />
+    <EmbeddedResource Include="Logs\Resources\Images\Tracking.jpg" />
+    <EmbeddedResource Include="Logs\Resources\Images\Warning.jpg" />
+    <EmbeddedResource Include="Logs\Resources\Templates\CustomMailTemplate.html" />
+    <EmbeddedResource Include="Logs\Resources\Templates\DefaultMailTemplate.html" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

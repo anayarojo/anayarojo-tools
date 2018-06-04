@@ -236,5 +236,38 @@ namespace AnayaRojo.Tools.Extensions.Object
 
             return lUknResultValue;
         }
+
+
+        /// <summary>
+        ///     Método para obtener contenido de archivos de texto encrustados en el codigo fuente.
+        /// </summary>
+        /// <param name="pObjCurrentObject">
+        ///     Clase u objeto que controla el acceso a datos.
+        /// </param>
+        /// <param name="pStrResourcePath">
+        ///     Ruta del recurso del archivo de texto.
+        /// </param>
+        /// <returns>
+        ///     Contenido del archivo de texto.
+        /// </returns>
+        public static string GetTextFromResource(this object pObjCurrentObject, string pStrResourcePath)
+        {
+            Type lObjBaseType = (typeof(Type).IsAssignableFrom(pObjCurrentObject.GetType())) ? (Type)pObjCurrentObject : pObjCurrentObject.GetType();
+
+            if (lObjBaseType.Assembly.IsDynamic)
+                lObjBaseType = lObjBaseType.BaseType;
+
+            using (var lObjStream = lObjBaseType.Assembly.GetManifestResourceStream(pStrResourcePath))
+            {
+                if (lObjStream != null)
+                {
+                    using (var lObjStreamReader = new StreamReader(lObjStream))
+                    {
+                        return lObjStreamReader.ReadToEnd();
+                    }
+                }
+            }
+            return string.Empty;
+        }
     }
 }
