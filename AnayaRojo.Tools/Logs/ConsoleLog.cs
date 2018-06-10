@@ -17,7 +17,7 @@ namespace AnayaRojo.Tools.Logs
         /// <param name="pStrMessage">
         ///     Mensaje.
         /// </param>
-        public void Show(string pStrMessage)
+        public static void Show(string pStrMessage)
         {
             ConsoleWrite(pStrMessage, ConsoleColor.Gray);
         }
@@ -31,7 +31,7 @@ namespace AnayaRojo.Tools.Logs
         /// <param name="pStrMessage">
         ///     Mensaje.
         /// </param>
-        public void Show(LogTypeEnum pEnmType, string pStrMessage)
+        public static void Show(LogTypeEnum pEnmType, string pStrMessage)
         {
             ConsoleWrite(pStrMessage, GetConsoleColor(pEnmType));
         }
@@ -48,12 +48,12 @@ namespace AnayaRojo.Tools.Logs
         /// <param name="pArrObjArgs">
         ///     Parametros.
         /// </param>
-        public void Show(LogTypeEnum pEnmType, string pStrFormat, params object[] pArrObjArgs)
+        public static void Show(LogTypeEnum pEnmType, string pStrFormat, params object[] pArrObjArgs)
         {
             ConsoleWrite(string.Format(pStrFormat, pArrObjArgs), GetConsoleColor(pEnmType));
         }
         
-        private ConsoleColor GetConsoleColor(LogTypeEnum pEnmType)
+        private static ConsoleColor GetConsoleColor(LogTypeEnum pEnmType)
         {
             switch (pEnmType)
             {
@@ -76,7 +76,7 @@ namespace AnayaRojo.Tools.Logs
             }
         }
 
-        private void ConsoleWrite(string pStrMessage, ConsoleColor pEnmColor)
+        private static void ConsoleWrite(string pStrMessage, ConsoleColor pEnmColor)
         {
             if (Log.Configuration.ConsoleLog.Active)
             {

@@ -127,7 +127,7 @@ namespace AnayaRojo.Tools.Configs.Sections
                 Active = lObjNode.Attributes["active"].Value.GetValue<bool>(),
                 ConnectionString = lObjNode.Attributes["connectionString"].Value.GetValue<string>(),
                 Table = lObjNode.Attributes["table"].Value.GetValue<string>(),
-                DateField = lObjNode.Attributes["dateField"].Value.GetValue<string>(),
+                DateField = lObjNode.Attributes["dateFiled"].Value.GetValue<string>(),
                 TypeField = lObjNode.Attributes["typeField"].Value.GetValue<string>(),
                 MessageField = lObjNode.Attributes["messageField"].Value.GetValue<string>()
             };
@@ -170,6 +170,8 @@ namespace AnayaRojo.Tools.Configs.Sections
             return new MailLogModel()
             {
                 Active = lObjNode.Attributes["active"].Value.GetValue<bool>(),
+                ApplicationName = lObjNode.Attributes["applicationName"].Value.GetValue<string>(),
+                AuthorName = lObjNode.Attributes["authorName"].Value.GetValue<string>(),
                 Server = lObjNode.Attributes["server"].Value.GetValue<string>(),
                 Port = lObjNode.Attributes["port"].Value.GetValue<int>(),
                 EnableSsl = lObjNode.Attributes["enableSsl"].Value.GetValue<bool>(),

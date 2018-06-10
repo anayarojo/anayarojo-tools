@@ -19,7 +19,7 @@ namespace AnayaRojo.Tools.Logs
         /// <param name="pStrMessage">
         ///     Mensaje.
         /// </param>
-        public void Save(string pStrMessage)
+        public static void Save(string pStrMessage)
         {
             SaveDataBaseLog(LogTypeEnum.INFO, pStrMessage);
         }
@@ -33,7 +33,7 @@ namespace AnayaRojo.Tools.Logs
         /// <param name="pStrMessage">
         ///     Mensaje.
         /// </param>
-        public void Save(LogTypeEnum pEnmType, string pStrMessage)
+        public static void Save(LogTypeEnum pEnmType, string pStrMessage)
         {
             SaveDataBaseLog(pEnmType, pStrMessage);
         }
@@ -50,7 +50,7 @@ namespace AnayaRojo.Tools.Logs
         /// <param name="pArrObjArgs">
         ///     Parametros.
         /// </param>
-        public void Save(LogTypeEnum pEnmType, string pStrFormat, params object[] pArrObjArgs)
+        public static void Save(LogTypeEnum pEnmType, string pStrFormat, params object[] pArrObjArgs)
         {
             SaveDataBaseLog(pEnmType, string.Format(pStrFormat, pArrObjArgs));
         }

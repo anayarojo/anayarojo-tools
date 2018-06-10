@@ -18,7 +18,7 @@ namespace AnayaRojo.Tools.Logs
         /// <param name="pStrMessage">
         ///     Mensaje.
         /// </param>
-        public void Save(string pStrMessage)
+        public static void Save(string pStrMessage)
         {
             SaveEventLog(LogTypeEnum.INFO, pStrMessage);
         }
@@ -32,7 +32,7 @@ namespace AnayaRojo.Tools.Logs
         /// <param name="pStrMessage">
         ///     Mensaje.
         /// </param>
-        public void Save(LogTypeEnum pEnmType, string pStrMessage)
+        public static void Save(LogTypeEnum pEnmType, string pStrMessage)
         {
             SaveEventLog(pEnmType, pStrMessage);
         }
@@ -49,12 +49,12 @@ namespace AnayaRojo.Tools.Logs
         /// <param name="pArrObjArgs">
         ///     Parametros.
         /// </param>
-        public void Save(LogTypeEnum pEnmType, string pStrFormat, params object[] pArrObjArgs)
+        public static void Save(LogTypeEnum pEnmType, string pStrFormat, params object[] pArrObjArgs)
         {
             SaveEventLog(pEnmType, string.Format(pStrFormat, pArrObjArgs));
         }
 
-        private void SaveEventLog(LogTypeEnum pEnmType, string pStrMessage)
+        private static void SaveEventLog(LogTypeEnum pEnmType, string pStrMessage)
         {
             string lStrEventLogName = "";
             if (Log.Configuration.EventLog.Active)
@@ -82,7 +82,7 @@ namespace AnayaRojo.Tools.Logs
             }
         }
 
-        private int GetEntryId(LogTypeEnum pEnmType)
+        private static int GetEntryId(LogTypeEnum pEnmType)
         {
             switch (pEnmType)
             {
@@ -105,7 +105,7 @@ namespace AnayaRojo.Tools.Logs
             }
         }
 
-        private EventLogEntryType GetEntryType(LogTypeEnum pEnmType)
+        private static EventLogEntryType GetEntryType(LogTypeEnum pEnmType)
         {
             switch (pEnmType)
             {

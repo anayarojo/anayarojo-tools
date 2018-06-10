@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("AnayaRojo.Tools.Tests")]
+[assembly: AssemblyTitle("AnayaRojo.Tools.Tests.LogException")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AnayaRojo.Tools.Tests")]
+[assembly: AssemblyProduct("AnayaRojo.Tools.Tests.LogException")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("77569ba2-dca8-4fcd-ba1b-7d336ce1bd98")]
+[assembly: Guid("a7a789a2-a941-4084-a52a-edda08c86f9d")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //

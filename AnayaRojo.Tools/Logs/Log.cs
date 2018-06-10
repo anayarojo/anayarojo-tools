@@ -2,6 +2,7 @@
 using AnayaRojo.Tools.Extensions.Enums;
 using AnayaRojo.Tools.Extensions.String;
 using AnayaRojo.Tools.Logs.Enums;
+using AnayaRojo.Tools.Logs.Exceptions;
 using System;
 using System.Configuration;
 using System.IO;
@@ -31,6 +32,10 @@ namespace AnayaRojo.Tools.Logs
                 if (mObjConfiguration == null)
                 {
                     mObjConfiguration = GetLogsConfiguration();
+                    if (mObjConfiguration == null)
+                    {
+                        throw new ConfigurationNotFoundException("No se encontró la configuración.");
+                    }
                 }
                 return mObjConfiguration;
             }
@@ -160,7 +165,7 @@ namespace AnayaRojo.Tools.Logs
             }
             else
             {
-                lStrAppPath = Path.Combine(lStrAppPath, GetLogName());
+                lStrLogPath = Path.Combine(lStrAppPath, GetLogName());
             }
             
             return lStrLogPath;
@@ -187,11 +192,11 @@ namespace AnayaRojo.Tools.Logs
         {
             if (Configuration.Log.WebLog)
             {
-                return Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Replace("file:\\", "");
+                return System.Web.HttpContext.Current.Server.MapPath("/");
             }
             else
             {
-                return System.Web.HttpContext.Current.Server.MapPath("/");
+                return Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Replace("file:\\", "");
             }
         }
         

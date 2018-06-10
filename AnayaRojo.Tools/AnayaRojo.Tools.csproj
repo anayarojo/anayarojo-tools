@@ -129,6 +129,7 @@
     <Compile Include="Logs\DataBaseLog.cs" />
     <Compile Include="Logs\Enums\LogTypeEnum.cs" />
     <Compile Include="Logs\EventLog.cs" />
+    <Compile Include="Logs\Exceptions\ConfigurationNotFoundException.cs" />
     <Compile Include="Logs\Log.cs" />
     <Compile Include="Logs\MailLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,37 +13,37 @@ namespace AnayaRojo.Tools.Logs.Enums
         /// <summary>
         /// Información
         /// </summary>
-        [DescriptionAttribute("INFO")]
+        [DescriptionAttribute("Información")]
         INFO = 0,
         /// <summary>
         /// Éxito
         /// </summary>
-        [DescriptionAttribute("SUCCESS")]
+        [DescriptionAttribute("Éxito")]
         SUCCESS = 1,
         /// <summary>
         /// Seguimiento
         /// </summary>
-        [DescriptionAttribute("TRACKING")]
+        [DescriptionAttribute("Seguimiento")]
         TRACKING = 2,
         /// <summary>
         /// Proceso
         /// </summary>
-        [DescriptionAttribute("PROCESS")]
+        [DescriptionAttribute("Proceso")]
         PROCESS = 3,
         /// <summary>
         /// Alerta
         /// </summary>
-        [DescriptionAttribute("WARNING")]
+        [DescriptionAttribute("Alerta")]
         WARNING = 4,
         /// <summary>
         /// Error
         /// </summary>
-        [DescriptionAttribute("ERROR")]
+        [DescriptionAttribute("Error")]
         ERROR = 5,
         /// <summary>
         /// Excepción
         /// </summary>
-        [DescriptionAttribute("EXCEPTION")]
+        [DescriptionAttribute("Excepción")]
         EXCEPTION = 6,
     }
 }

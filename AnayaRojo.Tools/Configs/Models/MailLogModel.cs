@@ -19,6 +19,14 @@ namespace AnayaRojo.Tools.Configs.Models
         /// </summary>
         public bool Active { get; set; }
         /// <summary>
+        ///     Nombre de la aplicación.
+        /// </summary>
+        public string ApplicationName { get; set; }
+        /// <summary>
+        ///     Nombre del autor del correo electrónico.
+        /// </summary>
+        public string AuthorName { get; set; }
+        /// <summary>
         ///     Servidor de correo electrónico.
         /// </summary>
         public string Server { get; set; }
