@@ -9,6 +9,7 @@
     <projectUrl>https://github.com/anayarojo/anayarojo-tools</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/anayarojo/anayarojo-tools/master/AnayaRojo.Tools/icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <title>Anaya Rojo Tools</title>
     <description>Tools for c# development</description>
     <releaseNotes>Configuration, Log and code extensions</releaseNotes>
     <copyright>Copyright Anaya Rojo 2018</copyright>
