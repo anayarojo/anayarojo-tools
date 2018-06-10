@@ -1,24 +1,63 @@
 ﻿<configuration>
-  <connectionStrings>
-    <!-- CONNECTION -->
-    <add name="Connection" connectionString="" providerName="System.Data.SqlClient" />
-  </connectionStrings>
-  <appSettings>
-    <!-- CONFIG -->
-    <add key="string" value="string"></add>
-    <add key="char" value="c"></add>
-    <add key="int" value="1"></add>
-    <add key="long" value="123456789"></add>
-    <add key="float" value="1.5"></add>
-    <add key="double" value="1.5"></add>
-    <add key="decimal" value="1.5"></add>
-    <add key="date" value="13/12/2017"></add>
-    <add key="bool" value="True"></add>
-    <add key="enum" value="ENUM_A"></add>
-    <!-- LOG -->
-    <add key="ShowConsole" value="true" />
-    <add key="SaveEventLog" value="true" />
-    <add key="FullLog" value="true" />
-    <add key="LogName" value="App" />
-  </appSettings>
+  <configSections>
+    <section name="logsConfiguration" type="AnayaRojo.Tools.Configs.Sections.LogsSection, AnayaRojo.Tools" />
+  </configSections>
+  <logsConfiguration>
+    <visibility
+      showInfo="true"
+      showSuccess="true"
+      showTracking="true"
+      showProcess="true"
+      showWarning="true"
+      showError="true"
+      showException="true">
+    </visibility>
+    <log
+      format="{date} [{type}] {message}"
+      dateFormat="yyyy-MM-dd HH:mm:ss"
+      active="true"
+      webLog="false"
+      fullLog="false"
+      multiFiles="false"
+      fileName="AppLog"
+      relativePath="false"
+      path="">
+    </log>
+    <consoleLog
+      active="true">
+    </consoleLog>
+    <eventLog
+      active="false"
+      name="AppLog"
+      infoId="10"
+      successId="10"
+      trackingId="30"
+      processId="30"
+      warningId="40"
+      errorId="50"
+      exceptionId="60">
+    </eventLog>
+    <dataBaseLog
+      active="false"
+      connectionString=""
+      table=""
+      dateFiled=""
+      typeField=""
+      messageField="">
+    </dataBaseLog>
+    <mailLog
+      active="false"
+      applicationName=""
+      authorName=""
+      server=""
+      port=""
+      enableSsl=""
+      user=""
+      password=""
+      fromName=""
+      fromMail=""
+      toName=""
+      toMail="">
+    </mailLog>
+  </logsConfiguration>
 </configuration>

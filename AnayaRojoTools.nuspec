@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AnayaRojoTools</id>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <authors>anayarojo</authors>
     <owners>anayarojo</owners>
     <licenseUrl>https://github.com/anayarojo/anayarojo-tools/blob/master/LICENSE</licenseUrl>
@@ -12,7 +12,7 @@
     <description>Tools for c# development</description>
     <releaseNotes>Configuration, Log and code extensions</releaseNotes>
     <copyright>Copyright Anaya Rojo 2018</copyright>
-    <tags>Log configuration anayarojo extensions c#</tags>
+    <tags>Log configuration anayarojo extensions tools development c#</tags>
     <dependencies>
       <!--<dependency id="SampleDependency" version="1.0" />-->
     </dependencies>
@@ -30,7 +30,7 @@
 	<file src="AnayaRojo.Tools\bin\Release-net461\AnayaRojo.Tools.dll" target="lib\net461\AnayaRojo.Tools.dll" />
 	<file src="AnayaRojo.Tools\bin\Release-net461\AnayaRojo.Tools.xml" target="lib\net461\AnayaRojo.Tools.xml" />
 	<!-- SAMPLE CONFIG -->
-	<file src="AnayaRojo.Tools\bin\Release\app.config.transform" target="content\app.config.transform" />
-	<file src="AnayaRojo.Tools\bin\Release\web.config.transform" target="content\web.config.transform" />
+	<file src="AnayaRojo.Tools\bin\Release-net45\App.config.transform" target="content\App.config.transform" />
+	<file src="AnayaRojo.Tools\bin\Release-net45\Web.config.transform" target="content\Web.config.transform" />
   </files>
 </package>

@@ -138,8 +138,12 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="app.config.transform" />
-    <None Include="web.config.transform" />
+    <Content Include="App.config.transform">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config.transform">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />

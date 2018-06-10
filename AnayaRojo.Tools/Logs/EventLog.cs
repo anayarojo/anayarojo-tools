@@ -54,6 +54,24 @@ namespace AnayaRojo.Tools.Logs
             SaveEventLog(pEnmType, string.Format(pStrFormat, pArrObjArgs));
         }
 
+        /// <summary>
+        ///     Mostrar excepción log.
+        /// </summary>
+        /// <param name="pObjException">
+        ///     Excepción.
+        /// </param>
+        public static void Save(Exception pObjException)
+        {
+            if (Log.Configuration.Log.FullLog)
+            {
+                SaveEventLog(LogTypeEnum.EXCEPTION, pObjException.ToString());
+            }
+            else
+            {
+                SaveEventLog(LogTypeEnum.EXCEPTION, pObjException.Message);
+            }
+        }
+
         private static void SaveEventLog(LogTypeEnum pEnmType, string pStrMessage)
         {
             string lStrEventLogName = "";

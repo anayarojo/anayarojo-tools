@@ -55,6 +55,24 @@ namespace AnayaRojo.Tools.Logs
             SaveDataBaseLog(pEnmType, string.Format(pStrFormat, pArrObjArgs));
         }
 
+        /// <summary>
+        ///     Guardar excepción log.
+        /// </summary>
+        /// <param name="pObjException">
+        ///     Excepción.
+        /// </param>
+        public static void Save(Exception pObjException)
+        {
+            if (Log.Configuration.Log.FullLog)
+            {
+                SaveDataBaseLog(LogTypeEnum.EXCEPTION, pObjException.ToString());
+            }
+            else
+            {
+                SaveDataBaseLog(LogTypeEnum.EXCEPTION, pObjException.Message);
+            }
+        }
+
         private static void SaveDataBaseLog(LogTypeEnum pEnmType, string pStrMessage)
         {
             if (Log.Configuration.DataBaseLog.Active)

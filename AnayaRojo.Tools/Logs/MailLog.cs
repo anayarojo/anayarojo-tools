@@ -19,7 +19,7 @@ namespace AnayaRojo.Tools.Logs
     public class MailLog
     {
         /// <summary>
-        ///     Mostrar log.
+        ///     Enviar log.
         /// </summary>
         /// <param name="pStrMessage">
         ///     Mensaje.
@@ -30,7 +30,7 @@ namespace AnayaRojo.Tools.Logs
         }
 
         /// <summary>
-        ///     Mostrar log.
+        ///     Enviar log.
         /// </summary>
         /// <param name="pEnmType">
         ///     Tipo del log.
@@ -44,7 +44,7 @@ namespace AnayaRojo.Tools.Logs
         }
 
         /// <summary>
-        ///     Mostrar log.
+        ///     Enviar log.
         /// </summary>
         /// <param name="pEnmType">
         ///     Tipo del log.
@@ -58,6 +58,24 @@ namespace AnayaRojo.Tools.Logs
         public static void Send(LogTypeEnum pEnmType, string pStrFormat, params object[] pArrObjArgs)
         {
             SendMail(pEnmType, string.Format(pStrFormat, pArrObjArgs));
+        }
+
+        /// <summary>
+        ///     Enviar excepción log.
+        /// </summary>
+        /// <param name="pObjException">
+        ///     Excepción.
+        /// </param>
+        public static void Send(Exception pObjException)
+        {
+            if (Log.Configuration.Log.FullLog)
+            {
+                SendMail(LogTypeEnum.EXCEPTION, pObjException.ToString());
+            }
+            else
+            {
+                SendMail(LogTypeEnum.EXCEPTION, pObjException.Message);
+            }
         }
 
         private static void SendMail(LogTypeEnum pEnmType, string pStrMessage)

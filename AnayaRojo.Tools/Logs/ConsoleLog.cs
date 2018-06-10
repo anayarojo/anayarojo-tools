@@ -52,7 +52,25 @@ namespace AnayaRojo.Tools.Logs
         {
             ConsoleWrite(string.Format(pStrFormat, pArrObjArgs), GetConsoleColor(pEnmType));
         }
-        
+
+        /// <summary>
+        ///     Mostrar excepción log.
+        /// </summary>
+        /// <param name="pObjException">
+        ///     Excepción.
+        /// </param>
+        public static void Show(Exception pObjException)
+        {
+            if (Log.Configuration.Log.FullLog)
+            {
+                ConsoleWrite(pObjException.ToString(), GetConsoleColor(LogTypeEnum.EXCEPTION));
+            }
+            else
+            {
+                ConsoleWrite(pObjException.Message, GetConsoleColor(LogTypeEnum.EXCEPTION));
+            }
+        }
+
         private static ConsoleColor GetConsoleColor(LogTypeEnum pEnmType)
         {
             switch (pEnmType)
