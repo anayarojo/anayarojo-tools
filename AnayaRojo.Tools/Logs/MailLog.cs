@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AnayaRojo.Tools.Extensions.Enums;
 using AnayaRojo.Tools.Extensions.Object;
+using AnayaRojo.Tools.Extensions.String;
+using System.IO;
+using System.Net.Mime;
 
 namespace AnayaRojo.Tools.Logs
 {
@@ -63,70 +66,113 @@ namespace AnayaRojo.Tools.Logs
 
         private void SendMail(LogTypeEnum pEnmType, string pStrMessage)
         {
-            MailMessage lObjMailMessage = new MailMessage();
-
-            // From mail
-            lObjMailMessage.From = new MailAddress(Log.Configuration.MailLog.FromMail, Log.Configuration.MailLog.FromName);
-
-            // To mails
-            lObjMailMessage.To.Add(new MailAddress(Log.Configuration.MailLog.ToMail, Log.Configuration.MailLog.ToName));
-
-            // Content
-            lObjMailMessage.Subject = string.Format("{0} on {1}", pEnmType.GetDescription(), GetAppName());
-            lObjMailMessage.Body = this.GetTextFromResource("AnayaRojo.Tools.Logs.Resources.Templates.DefaultMailTemplate.html");
-            lObjMailMessage.IsBodyHtml = true;
-            lObjMailMessage.Priority = MailPriority.Normal;
-
-            //Cuenta
-            SmtpClient lObjClient = new SmtpClient();
-            lObjClient.UseDefaultCredentials = false;
-            lObjClient.Credentials = new NetworkCredential(Log.Configuration.MailLog.User, Log.Configuration.MailLog.Password);
-            lObjClient.Host = Log.Configuration.MailLog.Server;
-            lObjClient.Port = Log.Configuration.MailLog.Port;
-
-            LinkedResource LinkedImage = new LinkedResource(@"J:\My Documents\Advika1.jpg");
-
-            //_client.EnableSsl = true;
-
-            try
-            {
-                lObjClient.Send(lObjMailMessage);
-                MessageBox.Show("Mensaje enviado...");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
-            lObjMailMessage.Dispose();
-
-
-
-
-
-            string lStrEventLogName = "";
             if (Log.Configuration.MailLog.Active)
             {
+                MailMessage lObjMailMessage = new MailMessage();
+
                 try
                 {
-                    System.Diagnostics.EventLog lObjEventLog = new System.Diagnostics.EventLog();
-                    lStrEventLogName = !string.IsNullOrEmpty(Log.Configuration.EventLog.Name) ?
-                                                             Log.Configuration.EventLog.Name :
-                                                             Process.GetCurrentProcess().ProcessName;
+                    // From mail
+                    lObjMailMessage.From = new MailAddress(Log.Configuration.MailLog.FromMail, Log.Configuration.MailLog.FromName);
 
-                    if (!System.Diagnostics.EventLog.SourceExists(lStrEventLogName))
-                    {
-                        System.Diagnostics.EventLog.CreateEventSource(lStrEventLogName, "Application");
-                    }
+                    // To mails
+                    lObjMailMessage.To.Add(new MailAddress(Log.Configuration.MailLog.ToMail, Log.Configuration.MailLog.ToName));
 
-                    lObjEventLog.Source = lStrEventLogName;
-                    lObjEventLog.WriteEntry(pStrMessage, GetEntryType(pEnmType), GetEntryId(pEnmType));
-                    lObjEventLog.Close();
+                    // Views
+                    string lStrDefaultView = this.GetTextFromResource("AnayaRojo.Tools.Logs.Resources.Templates.DefaultMailTemplate.html");
+                    lStrDefaultView = lStrDefaultView.InjectSingleValue("Title", "");
+                    lStrDefaultView = lStrDefaultView.InjectSingleValue("Type", "");
+                    lStrDefaultView = lStrDefaultView.InjectSingleValue("Date", "");
+                    lStrDefaultView = lStrDefaultView.InjectSingleValue("Time", "");
+
+
+                    // Content
+                    lObjMailMessage.Subject = string.Format("{0} on {1}", pEnmType.GetDescription(), GetAppName());
+                    lObjMailMessage.Body = PopulateParameters
+                    (
+                        this.GetTextFromResource("AnayaRojo.Tools.Logs.Resources.Templates.DefaultMailTemplate.html"), 
+                        pEnmType, 
+                        pStrMessage
+                    );
+                    lObjMailMessage.IsBodyHtml = true;
+                    lObjMailMessage.Priority = MailPriority.Normal;
+
+                    // Get mail icon
+                    LinkedResource lObjLinkedImage = new LinkedResource(GetIconStream(pEnmType));
+                    lObjLinkedImage.ContentType = new ContentType(MediaTypeNames.Image.Jpeg);
+                    lObjLinkedImage.ContentId = "Icon";
+
+                    // Create view
+                    AlternateView lObjHtmlView = AlternateView.CreateAlternateViewFromString
+                    (
+                        PopulateParameters
+                        (
+                            this.GetTextFromResource("AnayaRojo.Tools.Logs.Resources.Templates.CustomMailTemplate.html"), 
+                            pEnmType, 
+                            pStrMessage
+                        ), 
+                        null, 
+                        "text/html"
+                    );
+
+                    // Add view
+                    lObjHtmlView.LinkedResources.Add(lObjLinkedImage);
+                    lObjMailMessage.AlternateViews.Add(lObjHtmlView);
+
+                    // Mail account
+                    SmtpClient lObjClient = new SmtpClient();
+                    lObjClient.UseDefaultCredentials = false;
+                    lObjClient.Credentials = new NetworkCredential(Log.Configuration.MailLog.User, Log.Configuration.MailLog.Password);
+                    lObjClient.Host = Log.Configuration.MailLog.Server;
+                    lObjClient.Port = Log.Configuration.MailLog.Port;
+                    lObjClient.EnableSsl = Log.Configuration.MailLog.EnableSsl;
+
+                    // Send
+                    lObjClient.Send(lObjMailMessage);
                 }
                 catch (Exception lObjException)
                 {
                     Log.Write(lObjException);
                 }
+                finally
+                {
+                    lObjMailMessage.Dispose();
+                }
+            }
+        }
+
+        private string PopulateParameters(string pStrHtml, LogTypeEnum pEnmType, string pStrMessage)
+        {
+            pStrHtml = pStrHtml.InjectSingleValue("Title", pEnmType.GetDescription());
+            pStrHtml = pStrHtml.InjectSingleValue("Type", pEnmType.GetDescription());
+            pStrHtml = pStrHtml.InjectSingleValue("Date", DateTime.Now.ToString("dd de MMMM de yyyy"));
+            pStrHtml = pStrHtml.InjectSingleValue("Time", DateTime.Now.ToString("hh:mm:ss tt"));
+            pStrHtml = pStrHtml.InjectSingleValue("MessageTitle", "Mensaje");
+            pStrHtml = pStrHtml.InjectSingleValue("Message", pStrMessage);
+            pStrHtml = pStrHtml.InjectSingleValue("Author", GetAppName());
+            return pStrHtml;
+        }
+
+        private Stream GetIconStream(LogTypeEnum pEnmType)
+        {
+            switch (pEnmType)
+            {
+                case LogTypeEnum.SUCCESS:
+                    return this.GetStreamFromResource("AnayaRojo.Tools.Logs.Resources.Images.Success.jpg");
+                case LogTypeEnum.INFO:
+                    return this.GetStreamFromResource("AnayaRojo.Tools.Logs.Resources.Images.Information.jpg");
+                case LogTypeEnum.PROCESS:
+                    return this.GetStreamFromResource("AnayaRojo.Tools.Logs.Resources.Images.Process.jpg");
+                case LogTypeEnum.TRACKING:
+                    return this.GetStreamFromResource("AnayaRojo.Tools.Logs.Resources.Images.Tracking.jpg");
+                case LogTypeEnum.WARNING:
+                    return this.GetStreamFromResource("AnayaRojo.Tools.Logs.Resources.Images.Warning.jpg");
+                case LogTypeEnum.ERROR:
+                    return this.GetStreamFromResource("AnayaRojo.Tools.Logs.Resources.Images.Exception.jpg");
+                case LogTypeEnum.EXCEPTION:
+                    return this.GetStreamFromResource("AnayaRojo.Tools.Logs.Resources.Images.Exception.jpg");
+                default:
+                    return this.GetStreamFromResource("AnayaRojo.Tools.Logs.Resources.Images.Information.jpg");
             }
         }
 

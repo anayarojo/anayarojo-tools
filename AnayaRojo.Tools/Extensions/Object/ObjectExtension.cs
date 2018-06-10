@@ -239,7 +239,7 @@ namespace AnayaRojo.Tools.Extensions.Object
 
 
         /// <summary>
-        ///     Método para obtener contenido de archivos de texto encrustados en el codigo fuente.
+        ///     Método para obtener contenido de archivos de texto incrustados en el codigo fuente.
         /// </summary>
         /// <param name="pObjCurrentObject">
         ///     Clase u objeto que controla el acceso a datos.
@@ -268,6 +268,28 @@ namespace AnayaRojo.Tools.Extensions.Object
                 }
             }
             return string.Empty;
+        }
+
+        /// <summary>
+        ///     Método para obtener el stream de archivos de incrustados en el codigo fuente.
+        /// </summary>
+        /// <param name="pObjCurrentObject">
+        ///     Clase u objeto que controla el acceso a datos.
+        /// </param>
+        /// <param name="pStrResourcePath">
+        ///     Ruta del recurso del archivo de texto.
+        /// </param>
+        /// <returns>
+        ///     Stream del archivo.
+        /// </returns>
+        public static Stream GetStreamFromResource(this object pObjCurrentObject, string pStrResourcePath)
+        {
+            Type lObjBaseType = (typeof(Type).IsAssignableFrom(pObjCurrentObject.GetType())) ? (Type)pObjCurrentObject : pObjCurrentObject.GetType();
+
+            if (lObjBaseType.Assembly.IsDynamic)
+                lObjBaseType = lObjBaseType.BaseType;
+
+            return lObjBaseType.Assembly.GetManifestResourceStream(pStrResourcePath);
         }
     }
 }

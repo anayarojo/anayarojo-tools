@@ -50,5 +50,9 @@ namespace AnayaRojo.Tools.Configs.Models
         ///     Correo destinatario.
         /// </summary>
         public string ToMail { get; set; }
+        /// <summary>
+        ///     Habilitar SSL
+        /// </summary>
+        public bool EnableSsl { get; set; }
     }
 }

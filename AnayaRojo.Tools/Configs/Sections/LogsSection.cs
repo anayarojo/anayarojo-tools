@@ -172,6 +172,7 @@ namespace AnayaRojo.Tools.Configs.Sections
                 Active = lObjNode.Attributes["active"].Value.GetValue<bool>(),
                 Server = lObjNode.Attributes["server"].Value.GetValue<string>(),
                 Port = lObjNode.Attributes["port"].Value.GetValue<int>(),
+                EnableSsl = lObjNode.Attributes["enableSsl"].Value.GetValue<bool>(),
                 User = lObjNode.Attributes["user"].Value.GetValue<string>(),
                 Password = lObjNode.Attributes["password"].Value.GetValue<string>(),
                 FromName = lObjNode.Attributes["fromName"].Value.GetValue<string>(),

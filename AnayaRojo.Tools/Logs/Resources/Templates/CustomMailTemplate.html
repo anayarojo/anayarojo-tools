@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>{MailSubject}</title>
+    <title>{Title}</title>
     <style>
         #outlook a {
             padding: 0;
@@ -97,6 +97,7 @@
             }
 
             .heading {
+                /*padding: 40px 28px 20px 28px !important;*/
                 font-size: 30px !important;
             }
 
@@ -286,19 +287,19 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="line-height: 0; font-size: 0px;">
-                                                        <img width="auto" height="64" align="middle" style="display: block; text-align: center; margin: 0 auto; height: 64px;" alt="Icon" src="../Images/Warning.jpg">
+                                                        <img width="auto" height="64" align="middle" style="display: block; text-align: center; margin: 0 auto; height: 64px;" alt="Icon" src="cid:Icon">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td align="center">
                                                         <h1 style="text-align: center;">
-                                                            Alerta
+                                                            {Type}
                                                         </h1>
                                                         <h2 style="text-align: center;">
-                                                            03 de junio de 2018
+                                                            {Date}
                                                         </h2>
                                                         <h2 style="text-align: center; font-weight: normal;">
-                                                            04:42:40 p.m. 
+                                                            {Time}
                                                         </h2>
                                                     </td>
                                                 </tr>
@@ -309,14 +310,14 @@
                                                 <tr>
                                                     <td align="center">
                                                         <h2 style="text-align: left;">
-                                                            Mensaje
+                                                            {MessageTitle}
                                                         </h2>
                                                         <p style="text-align: left; font-size: 18px;">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur volutpat vehicula. Nullam hendrerit, enim eget hendrerit sodales, sem nibh.
+                                                            {Message}
                                                         </p>
                                                         <br />
                                                         <p style="text-align: left; font-size: 18px;">
-                                                            Lorem.
+                                                            {Author}
                                                         </p>
                                                     </td>
                                                 </tr>
